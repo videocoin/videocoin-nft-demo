@@ -175,12 +175,11 @@ ipfs://QmZ2d3be8b9jRcWmpXzBTgihKuRDZQiMqMN2xguv9bvcLq
 
 Example: Decrypt DRM data and retrieve content encryption key. You need to supply private key with -s option and DRM data with -d option
 ```
-python3 drm_ecies.py -s 050b8e9ee8997d060fbbf7d5efdfe8387585934a4c28267ef95fe46be79c1767 -d 048515ebe52fecc5532cfba6269780a664d8ccf4a77b53b10c706d8921ea6a3b658822374efd16e386fdb464cd2e4c0daf172c211462235d5dbb988bb9551b1069abec9cbe27cd64e598ee3e8a74fb170ca31f7714e0f56042aa57249a8086c949f310c124c25623d3735f78954e9e4f2e9ed408e754bfbce98667f924b305e99a
-
-outputs on succesful decryption of DRM:
-b'76a6c65c5ea762046bd749a2e632ccbb'
+python3 drm_ecies.py -s <private key> -d <drm key from token uri>
 ```
+outputs content deryption key on succesful decryption of DRM:
+
 Decrypt the content using the encryption key used in the previous step.
 ```
-ffmpeg  -decryption_key 76a6c65c5ea762046bd749a2e632ccbb -i encrypted_firstfilm.mp4 -c:v copy -c:a copy test_dec.mp4
+ffmpeg  -decryption_key <decryption key> -i encrypted_firstfilm.mp4 -c:v copy -c:a copy test_dec.mp4
 ```
