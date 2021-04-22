@@ -9,14 +9,14 @@ Steps
 * Access the VID NFT using a dApp
 * Retrieve the token URI and validate Integrity and DRM
 
-## Clone the videocoin-nft-poc repo
+## Clone the videocoin-nft-demo repo
 ```
-git clone https://github.com/videocoin/videocoin-nft-poc
+git clone https://github.com/videocoin/videocoin-nft-demo
 cd textilehub-test
 ```
 
 ## Setup Textile Hub bucket
-Download and install the Textile Hub from the follwoing:  
+Download and install the Textile Hub from the follwoing link:  
 https://github.com/textileio/textile/releases/tag/v2.6.8  
 
 Signup for the Textile Buckets   
@@ -29,11 +29,13 @@ create an sub folder "assets" to hold video assets
  hub buck link
 ```
 hub login requires email based authenticaion.
+
 ### API Key based upload to Bucket
-use the js script that uses TextileIo's hub js library.
+You can use either hub api manually or alternately, you can upload the files using node application. Node application uses  hub js script that inturn uses TextileIo's hub js library.
 
-
+Example
 ```
+cd hubjs
 npm start ../assets/QmZ2d3be8b9jRcWmpXzBTgihKuRDZQiMqMN2xguv9bvcLq
 ```
 
@@ -46,7 +48,7 @@ https://eth-brownie.readthedocs.io/en/stable/install.html
 
 Configure brownie-config.yaml to select the blockchain
 
-Intall openzeppelin-contracts@3.4.0
+Intall openzeppelin-contracts@3.4.0 for ERC721 and ERC1155 contracts
 ```
 brownie pm install OpenZeppelin/openzeppelin-contracts@3.4.0
 ```
@@ -113,9 +115,19 @@ cd assets
 hub bucket push
 ```
 
+Alternately use hubjs node application described previously.
+
 ## Mint VID NFT
 use the script mint_nft.py  to mint a VID NFT. Supply token ID for the NFT with -t option and token uri with -u option.   
-Example command.
+
+Set environment varibales to supply infura project ID and private key for sigming mint transactions.
+
+```
+export PRIVATE_KEY="AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+export WEB3_INFURA_PROJECT_ID=AAAAAAAAAAAAAAAAAA
+```
+
+Example mint command.
 ```
 python3 mint_nft.py -t 1730 -u https://hub.textile.io/ipns/bafzbeieigdvhfntbfkf7semdska5bxokinvs6oi43yimwgzryvtnbj6rte/QmZ2d3be8b9jRcWmpXzBTgihKuRDZQiMqMN2xguv9bvcLq
 ```
